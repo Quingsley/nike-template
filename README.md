@@ -14,3 +14,6 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+## INSPIRATION
+design [Link](https://www.figma.com/file/rmFbZvDeIftzS6vZqWV360/Nike-Sneaker-Store-App?node-id=48-3453&t=HgSyVeSqNJzHrTjF-0)
