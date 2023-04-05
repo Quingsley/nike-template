@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nike_app/themes/theme.dart';
-import './on_boarding/on_boarding_screen.dart';
+
+import 'on_boarding/on_boarding_screen.dart';
+import 'themes/theme.dart';
 
 void main() {
   runApp(const MyApp());
