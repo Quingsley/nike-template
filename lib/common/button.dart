@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
 class NikeButton extends StatelessWidget {
-  const NikeButton({super.key, required this.text});
+  const NikeButton({super.key, required this.text, this.onPress});
   final String text;
+  final Function()? onPress;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () => print('Get Started'),
+      onPressed: onPress,
       style: ElevatedButton.styleFrom(
         foregroundColor: const Color(0XFF2B2B2B),
         padding: EdgeInsets.symmetric(

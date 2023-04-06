@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class OnBoarding1 extends StatelessWidget {
-  const OnBoarding1({super.key, required this.bgColor});
+  const OnBoarding1({
+    super.key,
+    required this.bgColor,
+  });
   final Color bgColor;
 
   @override

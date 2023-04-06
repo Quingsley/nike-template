@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
-import '../components/button.dart';
+import '../../../common/button.dart';
 
 class OnBoarding2 extends StatelessWidget {
-  const OnBoarding2({super.key, required this.bgColor});
+  const OnBoarding2({
+    super.key,
+    required this.bgColor,
+  });
   final Color bgColor;
 
   @override
@@ -215,8 +219,9 @@ class OnBoarding2 extends StatelessWidget {
               ),
             ),
             SizedBox(height: MediaQuery.of(context).size.height * .12),
-            const NikeButton(
+            NikeButton(
               text: 'Get Started',
+              onPress: () => context.go('/signin'),
             ),
           ],
         ),

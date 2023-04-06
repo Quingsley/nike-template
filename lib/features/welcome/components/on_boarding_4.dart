@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:nike_app/components/button.dart';
+import '../../../common/button.dart';
 
 class OnBoarding4 extends StatelessWidget {
   const OnBoarding4({super.key, required this.bgColor});
@@ -154,7 +155,10 @@ class OnBoarding4 extends StatelessWidget {
                 ),
               ),
             ),
-            const NikeButton(text: 'Next')
+            NikeButton(
+              text: 'Next',
+              onPress: () => context.go('/signin'),
+            )
           ],
         ),
       ),

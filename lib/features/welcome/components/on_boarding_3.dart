@@ -1,16 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../components/button.dart';
+import '../../../common/button.dart';
 
-class OnBoarding3 extends StatelessWidget {
-  const OnBoarding3({super.key, required this.bgColor});
+class OnBoarding3 extends StatefulWidget {
+  const OnBoarding3(
+      {super.key,
+      required this.bgColor,
+      required this.curretPageNumber,
+      required this.controller});
   final Color bgColor;
+  final int curretPageNumber;
+  final PageController controller;
+
+  @override
+  State<OnBoarding3> createState() => _OnBoarding3State();
+}
+
+class _OnBoarding3State extends State<OnBoarding3> {
+  @override
+  void dispose() {
+    super.dispose();
+    widget.controller.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: bgColor,
+      color: widget.bgColor,
       child: Column(
         children: [
           SizedBox(
@@ -184,7 +201,16 @@ class OnBoarding3 extends StatelessWidget {
           SizedBox(
             height: MediaQuery.of(context).size.height * .1,
           ),
-          const NikeButton(text: 'Next')
+          NikeButton(
+            text: 'Next',
+            onPress: () {
+              if (widget.curretPageNumber == 2) {
+                widget.controller.animateToPage(3,
+                    duration: const Duration(milliseconds: 1),
+                    curve: Curves.bounceIn);
+              }
+            },
+          )
         ],
       ),
     );
