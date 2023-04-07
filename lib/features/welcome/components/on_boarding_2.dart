@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../common/button.dart';
+import '../../../common/pages.dart';
 
 class OnBoarding2 extends StatelessWidget {
   const OnBoarding2({
@@ -221,7 +222,7 @@ class OnBoarding2 extends StatelessWidget {
             SizedBox(height: MediaQuery.of(context).size.height * .12),
             NikeButton(
               text: 'Get Started',
-              onPress: () => context.go('/signin'),
+              onPress: () => context.go("/${Screens.signin.name}"),
             ),
           ],
         ),
