@@ -11,7 +11,7 @@ class GButton extends StatelessWidget {
         onPressed: onpress,
         style: ElevatedButton.styleFrom(
           foregroundColor: Colors.black,
-          padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+          padding: const EdgeInsets.symmetric(vertical: 15),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
@@ -26,7 +26,7 @@ class GButton extends StatelessWidget {
               cacheHeight: 50,
             ),
             const SizedBox(
-              width: 30,
+              width: 10,
             ),
             Text(
               text,

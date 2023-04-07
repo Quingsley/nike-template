@@ -6,8 +6,12 @@ class TButton extends StatelessWidget {
     super.key,
     required this.text,
     this.onpress,
+    this.color,
+    this.boldness,
   });
+  final Color? color;
   final String text;
+  final FontWeight? boldness;
   final Function()? onpress;
   @override
   Widget build(BuildContext context) {
@@ -15,8 +19,9 @@ class TButton extends StatelessWidget {
       onPressed: onpress,
       child: Text(
         text,
-        style: GoogleFonts.poppins(
-          color: Colors.black26,
+        style: GoogleFonts.raleway(
+          color: color ?? Colors.black,
+          fontWeight: boldness ?? FontWeight.w700,
         ),
       ),
     );

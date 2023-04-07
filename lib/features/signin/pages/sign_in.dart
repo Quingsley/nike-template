@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../common/back_button.dart';
+import '../../../common/pages.dart';
 import '../components/custom_button.dart';
 import '../components/google_button.dart';
 import '../components/input_field.dart';
@@ -22,15 +24,17 @@ class _SignInState extends State<SignIn> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      resizeToAvoidBottomInset: false,
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 50),
+        padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
           children: [
             Row(
-              children: const [
-                KBackButton(),
+              children: [
+                KBackButton(
+                  onpress: () => context.go("/"),
+                ),
               ],
             ),
             const KTitle(
@@ -54,34 +58,39 @@ class _SignInState extends State<SignIn> {
               isObscured: true,
             ),
             Row(
-              children: const [
-                Spacer(),
+              children: [
+                const Spacer(),
                 TButton(
                   text: 'Recovery Password',
+                  color: Colors.black26,
+                  boldness: FontWeight.normal,
+                  onpress: () => context.go('/${Screens.forgotPassword.name}'),
                 ),
               ],
             ),
-            Flexible(
-              fit: FlexFit.tight,
-              child: CButton(
-                text: 'Sign in',
-                onpressed: () {},
-              ),
+            CButton(
+              text: 'Sign in',
+              hPadding: 135,
+              onpressed: () {},
             ),
             const SizedBox(
               height: 20,
             ),
-            Flexible(
-              fit: FlexFit.tight,
-              child: GButton(
-                text: 'Sign In With Google',
-                onpress: () {},
-              ),
+            GButton(
+              text: 'Sign In With Google',
+              onpress: () {},
             ),
             const Spacer(),
-            const Flexible(
-                fit: FlexFit.tight,
-                child: TButton(text: 'New User? Create Account'))
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SubTitle(text: 'New User?'),
+                TButton(
+                  text: 'Create Account',
+                  onpress: () => context.go("/${Screens.signup.name}"),
+                ),
+              ],
+            )
           ],
         ),
       ),

@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
 
 class CButton extends StatelessWidget {
-  const CButton({super.key, required this.text, this.onpressed});
+  const CButton(
+      {super.key,
+      required this.text,
+      this.onpressed,
+      this.fSize,
+      this.hPadding});
   final String text;
   final Function()? onpressed;
+
+  final double? fSize;
+  final double? hPadding;
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +19,8 @@ class CButton extends StatelessWidget {
       onPressed: onpressed,
       style: ElevatedButton.styleFrom(
         foregroundColor: Colors.white,
-        padding: const EdgeInsets.symmetric(horizontal: 120, vertical: 15),
+        padding:
+            EdgeInsets.symmetric(horizontal: hPadding ?? 120, vertical: 15),
         backgroundColor: Theme.of(context).colorScheme.primaryContainer,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
@@ -19,7 +28,10 @@ class CButton extends StatelessWidget {
       ),
       child: Text(
         text,
-        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+        softWrap: false,
+        overflow: TextOverflow.visible,
+        textAlign: TextAlign.center,
+        style: TextStyle(fontSize: fSize ?? 16, fontWeight: FontWeight.w700),
       ),
     );
   }
