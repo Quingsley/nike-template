@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:nike_app/features/signin/pages/forgot_password.dart';
 
 import 'common/pages.dart';
+import 'features/signin/pages/forgot_password.dart';
+import 'features/signin/pages/otp_verification.dart';
 import 'features/signin/pages/sign_in.dart';
 import 'features/signin/pages/sign_up.dart';
 import 'features/welcome/on_boarding_screen.dart';
@@ -30,7 +31,11 @@ final _router = GoRouter(
     GoRoute(
       path: "/${Screens.forgotPassword.name}",
       builder: (context, state) => const ForgotPassword(),
-    )
+    ),
+    GoRoute(
+      path: "/${Screens.otp.name}",
+      builder: (context, state) => const OTPPage(),
+    ),
   ],
 );
 

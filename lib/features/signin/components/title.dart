@@ -5,16 +5,18 @@ class KTitle extends StatelessWidget {
   const KTitle({
     super.key,
     required this.text,
+    this.fSize,
   });
 
   final String text;
+  final double? fSize;
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
       textAlign: TextAlign.center,
       style: GoogleFonts.raleway(
-        fontSize: 32,
+        fontSize: fSize ?? 32,
         fontWeight: FontWeight.bold,
       ),
     );
