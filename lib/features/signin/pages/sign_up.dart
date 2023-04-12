@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:nike_app/common/back_button.dart';
-import 'package:nike_app/common/pages.dart';
-import 'package:nike_app/features/signin/components/subtitle.dart';
-import 'package:nike_app/features/signin/components/title.dart';
+import '../../../common/back_button.dart';
+import '../../../common/pages.dart';
+import '../components/subtitle.dart';
+import '../components/title.dart';
 
 import '../components/custom_button.dart';
 import '../components/google_button.dart';

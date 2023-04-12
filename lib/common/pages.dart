@@ -1,1 +1,1 @@
-enum Screens { home, signin, signup, forgotPassword }
+enum Screens { home, signin, signup, forgotPassword, otp }

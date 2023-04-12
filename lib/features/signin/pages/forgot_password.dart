@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:nike_app/common/back_button.dart';
-import 'package:nike_app/common/pages.dart';
-import 'package:nike_app/features/signin/components/custom_button.dart';
-import 'package:nike_app/features/signin/components/input_field.dart';
-import 'package:nike_app/features/signin/components/subtitle.dart';
-import 'package:nike_app/features/signin/components/title.dart';
+import '../../../common/back_button.dart';
+import '../../../common/pages.dart';
+import '../components/alert.dart';
+import '../components/custom_button.dart';
+import '../components/input_field.dart';
+import '../components/subtitle.dart';
+import '../components/title.dart';
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({super.key});
@@ -41,7 +42,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             ),
             CButton(
               text: 'Reset Password',
-              onpressed: () {},
+              onpressed: () async {
+                await openAlert(context)
+                    .then((_) => context.go('/${Screens.otp.name}'));
+              },
             )
           ],
         ),

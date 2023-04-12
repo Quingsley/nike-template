@@ -204,8 +204,8 @@ class _OnBoarding3State extends State<OnBoarding3> {
           NikeButton(
             text: 'Next',
             onPress: () {
-              if (widget.curretPageNumber == 2) {
-                widget.controller.animateToPage(3,
+              if (widget.curretPageNumber == 1) {
+                widget.controller.animateToPage(2,
                     duration: const Duration(milliseconds: 1),
                     curve: Curves.bounceIn);
               }

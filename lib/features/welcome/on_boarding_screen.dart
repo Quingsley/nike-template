@@ -27,9 +27,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       controller: controller,
       onPageChanged: onPageChanged,
       children: <Widget>[
-        // const OnBoarding1(
-        //   bgColor: bgColor,
-        // ),
         const OnBoarding2(bgColor: bgColor),
         OnBoarding3(
           bgColor: bgColor,
