@@ -71,7 +71,9 @@ class _SignInState extends State<SignIn> {
             CButton(
               text: 'Sign in',
               hPadding: 135,
-              onpressed: () {},
+              onpressed: () {
+                context.go('/${Screens.shoeDetail.name}');
+              },
             ),
             const SizedBox(
               height: 20,
