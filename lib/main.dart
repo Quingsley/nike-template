@@ -9,6 +9,7 @@ import 'features/auth/pages/sign_up.dart';
 import 'features/welcome/on_boarding_screen.dart';
 import 'features/details/pages/detail_screen.dart';
 import 'themes/theme.dart';
+import './features/home/screens/bottom_nav_bar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -36,6 +37,10 @@ final _router = GoRouter(
     GoRoute(
       path: "/${Screens.otp.name}",
       builder: (context, state) => const OTPPage(),
+    ),
+    GoRoute(
+      path: "/${Screens.home.name}",
+      builder: (context, state) => const BottomNavBar(),
     ),
     GoRoute(
       path: "/${Screens.shoeDetail.name}",

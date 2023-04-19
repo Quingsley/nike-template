@@ -57,7 +57,7 @@ class _SignUpState extends State<SignUp> {
             CButton(
               text: 'Sign Up',
               hPadding: 135,
-              onpressed: () {},
+              onpressed: () => context.go("/${Screens.home.name}"),
             ),
             const SizedBox(
               height: 20,
