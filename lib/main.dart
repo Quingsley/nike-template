@@ -1,54 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-
-import 'common/pages.dart';
-import 'features/auth/pages/forgot_password.dart';
-import 'features/auth/pages/otp_verification.dart';
-import 'features/auth/pages/sign_in.dart';
-import 'features/auth/pages/sign_up.dart';
-import 'features/welcome/on_boarding_screen.dart';
-import 'features/details/pages/detail_screen.dart';
+import 'package:nike_app/routes/app_routes.dart';
 import 'themes/theme.dart';
-import './features/home/screens/bottom_nav_bar.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
 // GoRouter configuration
-final _router = GoRouter(
-  routes: [
-    GoRoute(
-      path: "/",
-      builder: (context, state) => const OnBoardingScreen(),
-    ),
-    GoRoute(
-      path: "/${Screens.signin.name}",
-      builder: (context, state) => const SignIn(),
-    ),
-    GoRoute(
-      path: "/${Screens.signup.name}",
-      builder: (context, state) => const SignUp(),
-    ),
-    GoRoute(
-      path: "/${Screens.forgotPassword.name}",
-      builder: (context, state) => const ForgotPassword(),
-    ),
-    GoRoute(
-      path: "/${Screens.otp.name}",
-      builder: (context, state) => const OTPPage(),
-    ),
-    GoRoute(
-      path: "/${Screens.home.name}",
-      builder: (context, state) => const BottomNavBar(),
-    ),
-    GoRoute(
-      path: "/${Screens.shoeDetail.name}",
-      builder: (context, state) => const ShoeDetail(),
-    ),
-  ],
-);
-
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -58,7 +16,7 @@ class MyApp extends StatelessWidget {
     const nikeTheme = NikeTheme();
     return MaterialApp.router(
       theme: nikeTheme.toThemeData(),
-      routerConfig: _router,
+      routerConfig: AppRoutes.router,
       debugShowCheckedModeBanner: false,
     );
   }
