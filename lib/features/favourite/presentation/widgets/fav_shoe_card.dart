@@ -1,35 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nike_app/features/home/data/models/shoe_category_model.dart';
 
-class CategoryShoeCard extends StatelessWidget {
-  const CategoryShoeCard({
-    super.key,
-    required this.category,
-    this.detailsPath,
-  });
+class FavouriteShoeCard extends StatelessWidget {
+  const FavouriteShoeCard(
+      {super.key, required this.category, this.index, this.detailsPath});
 
   final ShoeCategoryModel category;
+  final int? index;
   final String? detailsPath;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(8),
-      width: 170,
+      padding: const EdgeInsets.all(2),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.inversePrimary,
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.circular(14),
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(14),
         child: Material(
           color: Theme.of(context).colorScheme.inversePrimary,
           child: InkWell(
-            splashColor: Theme.of(context).colorScheme.primary.withOpacity(.4),
+            splashColor: Theme.of(context).colorScheme.primary.withOpacity(.1),
             highlightColor:
-                Theme.of(context).colorScheme.primary.withOpacity(.2),
+                Theme.of(context).colorScheme.primary.withOpacity(.1),
             onTap: () => context.push(detailsPath!),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -60,9 +59,6 @@ class CategoryShoeCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 4,
-                ),
                 Padding(
                   padding: const EdgeInsets.only(left: 8.0),
                   child: Text(
@@ -74,42 +70,28 @@ class CategoryShoeCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 8,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 8.0),
-                  child: Text(
-                    '\$${category.price}',
-                    style: GoogleFonts.poppins(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                      color: Theme.of(context).colorScheme.secondary,
-                    ),
-                  ),
-                ),
                 const Spacer(),
-                Align(
-                  alignment: const Alignment(1, 0),
-                  child: GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      width: 30,
-                      height: 30,
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.primary,
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(12),
-                          bottomRight: Radius.circular(12),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Text(
+                        '\$${category.price}',
+                        style: GoogleFonts.poppins(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          color: Theme.of(context).colorScheme.secondary,
                         ),
                       ),
-                      child: const Icon(
-                        Icons.add,
-                        color: Colors.white,
-                      ),
                     ),
-                  ),
-                )
+                    const Spacer(),
+                    SvgPicture.asset(index! % 2 == 0
+                        ? 'assets/images/dot-red.svg'
+                        : 'assets/images/dot-indigo.svg'),
+                  ],
+                ),
               ],
             ),
           ),

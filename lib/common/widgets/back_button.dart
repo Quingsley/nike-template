@@ -14,13 +14,10 @@ class KBackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: margin ?? 0),
+      margin: EdgeInsets.only(left: margin ?? 0, top: 10, bottom: 10),
       decoration: BoxDecoration(
-        color: color ?? Theme.of(context).colorScheme.background,
-        borderRadius: const BorderRadius.all(
-          Radius.circular(50),
-        ),
-      ),
+          color: color ?? Theme.of(context).colorScheme.inversePrimary,
+          borderRadius: BorderRadius.circular(100)),
       child: IconButton(
         icon: Icon(
           Icons.arrow_back_ios,

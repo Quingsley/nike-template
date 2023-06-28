@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:nike_app/features/auth/presentation/pages/forgot_password.dart';
 import 'package:nike_app/features/auth/presentation/pages/otp_verification.dart';
 import 'package:nike_app/features/auth/presentation/pages/sign_in.dart';
@@ -25,7 +26,17 @@ class AppRoutes {
   static final router = GoRouter(
     navigatorKey: AppRoutes._rootNavigator,
     initialLocation: OnBoardingScreen.route,
-    errorBuilder: (context, state) => const Scaffold(),
+    errorBuilder: (context, state) => Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.errorContainer,
+      body: Center(
+        child: Text(
+          state.error.toString(),
+          style: GoogleFonts.adventPro(
+              color: Theme.of(context).colorScheme.onErrorContainer,
+              fontSize: 30),
+        ),
+      ),
+    ),
     routes: [
       GoRoute(
         path: OnBoardingScreen.route,
@@ -55,9 +66,16 @@ class AppRoutes {
             navigatorKey: AppRoutes._shellNavigatorHomeKey,
             routes: [
               GoRoute(
-                path: HomeScreen.route,
-                builder: (context, state) => const HomeScreen(),
-              ),
+                  path: HomeScreen.route,
+                  builder: (context, state) => const HomeScreen(
+                        detailsPath: '/home/shoe-detail',
+                      ),
+                  routes: [
+                    GoRoute(
+                      path: ShoeDetail.route,
+                      builder: (context, state) => const ShoeDetail(),
+                    ),
+                  ]),
             ],
           ),
           StatefulShellBranch(
@@ -65,7 +83,15 @@ class AppRoutes {
             routes: [
               GoRoute(
                 path: FavouriteScreen.route,
-                builder: (context, state) => const FavouriteScreen(),
+                builder: (context, state) => const FavouriteScreen(
+                  detailsPath: '/favourite/shoe-detail',
+                ),
+                routes: [
+                  GoRoute(
+                    path: ShoeDetail.route,
+                    builder: (context, state) => const ShoeDetail(),
+                  ),
+                ],
               ),
             ],
           ),
@@ -88,12 +114,6 @@ class AppRoutes {
             ],
           ),
         ],
-      ),
-
-      //TODO WIll be in a shell branch
-      GoRoute(
-        path: ShoeDetail.route,
-        builder: (context, state) => const ShoeDetail(),
       ),
     ],
   );

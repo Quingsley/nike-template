@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+//FIXME: REMOVE HARDCODED VALUES
 class ShoeCardBanner extends StatelessWidget {
   const ShoeCardBanner({super.key});
 
@@ -35,7 +36,7 @@ class ShoeCardBanner extends StatelessWidget {
                 children: [
                   Container(
                     height: 75,
-                    width: 145,
+                    width: 132,
                     margin: const EdgeInsets.only(bottom: 11),
                     child: Stack(
                       alignment: Alignment.topRight,

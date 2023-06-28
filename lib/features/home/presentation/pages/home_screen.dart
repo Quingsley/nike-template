@@ -42,9 +42,10 @@ List<ShoeCategoryModel> _shoeCategories = [
 ];
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({super.key, required this.detailsPath});
 
   static const String route = '/home';
+  final String detailsPath;
 
   @override
   Widget build(BuildContext context) {
@@ -151,45 +152,48 @@ class HomeScreen extends StatelessWidget {
               height: 5,
             ),
             Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Select Category',
-                    textAlign: TextAlign.left,
-                    style: GoogleFonts.raleway(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16,
-                      color: Theme.of(context).colorScheme.secondary,
-                    ),
-                  ),
-                  SizedBox(
-                    width: double.maxFinite,
-                    height: 75,
-                    child: ListView.builder(
-                      itemCount: _categories.length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: ((context, index) => CategoryCard(
-                            category: _categories[index],
-                          )),
-                    ),
-                  ),
-                  const CategoryActionHeader(
-                    leftTitle: 'Popular Shoes',
-                  ),
-                  SizedBox(
-                    height: 300,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: _shoeCategories.length,
-                      itemBuilder: (context, index) => CategoryShoeCard(
-                        category: _shoeCategories[index],
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Select Category',
+                      textAlign: TextAlign.left,
+                      style: GoogleFonts.raleway(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                        color: Theme.of(context).colorScheme.secondary,
                       ),
                     ),
-                  ),
-                  const CategoryActionHeader(leftTitle: 'New Arrivals'),
-                  const ShoeCardBanner(),
-                ],
+                    SizedBox(
+                      width: double.maxFinite,
+                      height: 75,
+                      child: ListView.builder(
+                        itemCount: _categories.length,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: ((context, index) => CategoryCard(
+                              category: _categories[index],
+                            )),
+                      ),
+                    ),
+                    const CategoryActionHeader(
+                      leftTitle: 'Popular Shoes',
+                    ),
+                    SizedBox(
+                      height: 300,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: _shoeCategories.length,
+                        itemBuilder: (context, index) => CategoryShoeCard(
+                          category: _shoeCategories[index],
+                          detailsPath: detailsPath,
+                        ),
+                      ),
+                    ),
+                    const CategoryActionHeader(leftTitle: 'New Arrivals'),
+                    const ShoeCardBanner(),
+                  ],
+                ),
               ),
             ),
           ],
