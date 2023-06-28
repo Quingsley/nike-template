@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:nike_app/features/cart/presentation/pages/cart_screen.dart';
 
 class AddToCartBtn extends StatelessWidget {
   const AddToCartBtn({super.key});
@@ -8,7 +10,9 @@ class AddToCartBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          context.go(CartScreen.route);
+        },
         style: ButtonStyle(
           backgroundColor: MaterialStatePropertyAll<Color>(
             Theme.of(context).colorScheme.primary,
