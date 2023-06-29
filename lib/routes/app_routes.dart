@@ -6,6 +6,7 @@ import 'package:nike_app/features/auth/presentation/pages/otp_verification.dart'
 import 'package:nike_app/features/auth/presentation/pages/sign_in.dart';
 import 'package:nike_app/features/auth/presentation/pages/sign_up.dart';
 import 'package:nike_app/features/cart/presentation/pages/cart_screen.dart';
+import 'package:nike_app/features/checkout/presentation/pages/checkout_screen.dart';
 import 'package:nike_app/features/favourite/presentation/pages/favourite_screen.dart';
 import 'package:nike_app/features/home/presentation/pages/home_screen.dart';
 import 'package:nike_app/features/notifications/presentation/pages/notification_screen.dart';
@@ -120,6 +121,10 @@ class AppRoutes {
       GoRoute(
         path: CartScreen.route,
         builder: (context, state) => const CartScreen(),
+      ),
+      GoRoute(
+        path: CheckoutScreen.route,
+        builder: (context, state) => const CheckoutScreen(),
       ),
     ],
   );

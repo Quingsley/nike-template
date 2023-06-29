@@ -7,6 +7,7 @@ import 'package:nike_app/features/cart/data/models/cart_model.dart';
 import 'package:nike_app/features/cart/presentation/widgets/cart_container.dart';
 import 'package:nike_app/features/cart/presentation/widgets/line_separator.dart';
 import 'package:nike_app/features/cart/presentation/widgets/row_widget.dart';
+import 'package:nike_app/features/checkout/presentation/pages/checkout_screen.dart';
 import 'package:nike_app/features/home/data/models/shoe_category_model.dart';
 
 CartModel _cart = CartModel(
@@ -120,7 +121,9 @@ class CartScreen extends StatelessWidget {
       floatingActionButton: CButton(
         text: 'Check Out',
         fSize: 14,
-        onpressed: () {},
+        onpressed: () {
+          context.go(CheckoutScreen.route);
+        },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
