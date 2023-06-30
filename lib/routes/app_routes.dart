@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:nike_app/features/auth/presentation/pages/forgot_password.dart';
 import 'package:nike_app/features/auth/presentation/pages/otp_verification.dart';
 import 'package:nike_app/features/auth/presentation/pages/sign_in.dart';
 import 'package:nike_app/features/auth/presentation/pages/sign_up.dart';
 import 'package:nike_app/features/cart/presentation/pages/cart_screen.dart';
 import 'package:nike_app/features/checkout/presentation/pages/checkout_screen.dart';
+import 'package:nike_app/features/error/presentation/pages/error_page.dart';
 import 'package:nike_app/features/favourite/presentation/pages/favourite_screen.dart';
 import 'package:nike_app/features/home/presentation/pages/home_screen.dart';
+import 'package:nike_app/features/map/presentation/pages/map_screen.dart';
 import 'package:nike_app/features/notifications/presentation/pages/notification_screen.dart';
 import 'package:nike_app/features/profile/presentation/pages/profile_Screen.dart';
 import 'package:nike_app/features/shoe-details/presentation/pages/detail_screen.dart';
@@ -28,18 +29,8 @@ class AppRoutes {
   static final router = GoRouter(
     navigatorKey: AppRoutes._rootNavigator,
     initialLocation: OnBoardingScreen.route,
-    errorBuilder: (context, state) => Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.errorContainer,
-      body: Center(
-        child: Text(
-          state.error.toString(),
-          style: GoogleFonts.adventPro(
-            color: Theme.of(context).colorScheme.onErrorContainer,
-            fontSize: 30,
-          ),
-        ),
-      ),
-    ),
+    errorBuilder: (context, state) =>
+        ErrorPage(message: state.error.toString()),
     routes: [
       GoRoute(
         path: OnBoardingScreen.route,
@@ -123,9 +114,16 @@ class AppRoutes {
         builder: (context, state) => const CartScreen(),
       ),
       GoRoute(
-        path: CheckoutScreen.route,
-        builder: (context, state) => const CheckoutScreen(),
-      ),
+          path: CheckoutScreen.route,
+          builder: (context, state) => const CheckoutScreen(
+                mapPath: '/checkout/map',
+              ),
+          routes: [
+            GoRoute(
+              path: MapScreen.route,
+              builder: (context, state) => const MapScreen(),
+            ),
+          ]),
     ],
   );
 }

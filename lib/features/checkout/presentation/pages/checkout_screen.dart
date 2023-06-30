@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:location/location.dart';
 import 'package:nike_app/common/cmn_text.dart';
 import 'package:nike_app/common/providers/location_service_provider.dart';
 import 'package:nike_app/common/widgets/back_button.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nike_app/features/auth/presentation/widgets/custom_button.dart';
+import 'package:nike_app/features/cart/presentation/widgets/line_separator.dart';
+import 'package:nike_app/features/cart/presentation/widgets/row_widget.dart';
+import 'package:nike_app/features/checkout/presentation/providers/new_location_state_provider.dart';
 import 'package:nike_app/features/checkout/presentation/widgets/contact_list_tile.dart';
 import 'package:nike_app/features/checkout/presentation/widgets/map_container.dart';
 import 'package:nike_app/features/checkout/presentation/widgets/row_widget.dart';
+import 'package:nike_app/features/checkout/presentation/widgets/success_popup.dart';
 import 'package:nike_app/features/tabs/presentation/providers/address_provider.dart';
-import 'package:nike_app/features/tabs/presentation/providers/tabs_provider.dart';
+import 'package:nike_app/features/tabs/presentation/providers/address_state_provider.dart';
 
 final showMoreStateProvider = StateProvider<bool>((ref) => false);
+final paymentShowMoreStateProvider = StateProvider<bool>((ref) => false);
 
 class CheckoutScreen extends ConsumerStatefulWidget {
-  const CheckoutScreen({super.key});
-
+  const CheckoutScreen({required this.mapPath, super.key});
+  final String mapPath;
   static const String route = '/checkout';
 
   @override
@@ -25,29 +29,18 @@ class CheckoutScreen extends ConsumerStatefulWidget {
 }
 
 class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
-  LocationData? address;
-  @override
-  void initState() {
-    super.initState();
-
-    Future.delayed(Duration.zero, () async {
-      var location = ref.watch(locationServiceProvider);
-      var lcData = await ref
-          .watch(tabViewModelProvider(locationService: location))
-          .getUsersLocation();
-      if (lcData != null) {
-        address = lcData;
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     var location = ref.watch(locationServiceProvider);
+    var newLocationAddress = ref.watch(newLocationPointsProvider);
     var isShowMoreProvider = ref.watch(showMoreStateProvider);
+    var isPaymentCardShown = ref.watch(paymentShowMoreStateProvider);
+    var address = ref.watch(addressInfoProvider);
     var addressAsyncValue = ref.watch(futureAddressProvider(
-        lat: address?.latitude?.toInt() ?? 0,
-        lng: address?.longitude?.toInt() ?? 0,
+        lat: newLocationAddress?.latitude.toInt() ??
+            address.address.latitude!.toInt(),
+        lng: newLocationAddress?.longitude.toInt() ??
+            address.address.longitude!.toInt(),
         locationService: location));
     return Scaffold(
       backgroundColor: const Color(0XFFF7F7F9),
@@ -128,20 +121,74 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
                   },
                 );
               },
-              error: ((error, stackTrace) => Text(error.toString())),
-              loading: () =>
-                  const Text('Please Hang On Getting your address...'),
+              error: ((error, stackTrace) => Text(
+                    error.toString(),
+                    style: TextStyle(
+                      overflow: TextOverflow.fade,
+                      color: Theme.of(context).colorScheme.error,
+                    ),
+                  )),
+              loading: () => Text(
+                'Please hang on us we get your address...',
+                style: TextStyle(color: Colors.green[400]),
+              ),
             ),
             if (isShowMoreProvider)
               MapContainerPreview(
-                  lat: address!.latitude!, lng: address!.longitude!)
+                lat: address.address.latitude!.toDouble(),
+                lng: address.address.longitude!.toDouble(),
+                path: widget.mapPath,
+              ),
+            const SizedBox(
+              height: 5,
+            ),
+            ReusableText(
+              fSize: 14,
+              text: 'Payments',
+              textAlign: TextAlign.left,
+              fWeight: FontWeight.w500,
+              color: const Color(0XFF1A2530),
+              fFamily: GoogleFonts.raleway().fontFamily,
+              fStyle: FontStyle.normal,
+            ),
+            RowCheckoutWidget(
+                title: 'Card Information',
+                icon:
+                    !isPaymentCardShown ? Icons.expand_more : Icons.expand_less,
+                onPress: () {
+                  ref.read(paymentShowMoreStateProvider.notifier).state =
+                      !ref.read(paymentShowMoreStateProvider.notifier).state;
+                }),
+            if (isPaymentCardShown) const Text('TO BE IMPLEMENTED LATER'),
+            const SizedBox(
+              height: 10,
+            ),
+            const RowWidget(leftText: 'Subtotal', rightText: '\$143.20'),
+            const SizedBox(height: 5),
+            const RowWidget(leftText: 'Delivery', rightText: '\$60.29'),
+            const LineSeparator(),
+            const SizedBox(height: 20),
+            RowWidget(
+              leftText: 'Total Cost',
+              rightText: '\$203.49',
+              color: Theme.of(context).colorScheme.primary,
+            )
           ],
         ),
       ),
       floatingActionButton: CButton(
         text: 'Check Out',
         fSize: 14,
-        onpressed: () {},
+        onpressed: () {
+          showDialog(
+              context: context,
+              barrierColor: Colors.grey[100]?.withOpacity(.7),
+              builder: (context) {
+                return const Dialog(
+                  child: SuccessPopup(),
+                );
+              });
+        },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );

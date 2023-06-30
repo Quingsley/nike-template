@@ -1,26 +1,51 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nike_app/common/providers/location_service_provider.dart';
+import 'package:nike_app/features/tabs/presentation/providers/address_state_provider.dart';
+import 'package:nike_app/features/tabs/presentation/providers/tabs_provider.dart';
 import 'package:nike_app/features/tabs/presentation/widgets/bottom_bar_item.dart';
 import 'package:nike_app/utils/utils.dart';
 
-class TabNavigation extends StatelessWidget {
+class TabNavigation extends ConsumerStatefulWidget {
   const TabNavigation({required this.navigationShell, Key? key})
       : super(key: key ?? const ValueKey<String>('ScaffoldWithNavBar'));
   final StatefulNavigationShell navigationShell;
   static const String route = '/tabs';
 
+  @override
+  ConsumerState<TabNavigation> createState() => _TabNavigationState();
+}
+
+class _TabNavigationState extends ConsumerState<TabNavigation> {
+  @override
+  void initState() {
+    super.initState();
+
+    Future.delayed(Duration.zero, () async {
+      var location = ref.watch(locationServiceProvider);
+      var setAddress = ref.watch(addressInfoProvider);
+      var lcData = await ref
+          .watch(tabViewModelProvider(locationService: location))
+          .getUsersLocation();
+      if (lcData != null) {
+        setAddress.address = lcData;
+      }
+    });
+  }
+
   void _goBranch(int index) {
-    navigationShell.goBranch(
+    widget.navigationShell.goBranch(
       index,
-      initialLocation: index == navigationShell.currentIndex,
+      initialLocation: index == widget.navigationShell.currentIndex,
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: navigationShell,
+      body: widget.navigationShell,
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         backgroundColor: Theme.of(context).colorScheme.primary,
@@ -42,10 +67,10 @@ class TabNavigation extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   BottomBarItem(
-                    isSelected:
-                        navigationShell.currentIndex == TabScreens.home.index
-                            ? true
-                            : false,
+                    isSelected: widget.navigationShell.currentIndex ==
+                            TabScreens.home.index
+                        ? true
+                        : false,
                     icon: Icons.home_outlined,
                     onPress: () {
                       _goBranch(TabScreens.home.index);
@@ -56,7 +81,7 @@ class TabNavigation extends StatelessWidget {
                     onPress: () {
                       _goBranch(TabScreens.favourite.index);
                     },
-                    isSelected: navigationShell.currentIndex ==
+                    isSelected: widget.navigationShell.currentIndex ==
                             TabScreens.favourite.index
                         ? true
                         : false,
@@ -71,14 +96,14 @@ class TabNavigation extends StatelessWidget {
                     onPress: () {
                       _goBranch(TabScreens.notification.index);
                     },
-                    isSelected: navigationShell.currentIndex ==
+                    isSelected: widget.navigationShell.currentIndex ==
                             TabScreens.notification.index
                         ? true
                         : false,
                   ),
                   BottomBarItem(
                       icon: Icons.account_box_outlined,
-                      isSelected: navigationShell.currentIndex ==
+                      isSelected: widget.navigationShell.currentIndex ==
                               TabScreens.profile.index
                           ? true
                           : false,

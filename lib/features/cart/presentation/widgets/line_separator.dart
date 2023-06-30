@@ -9,7 +9,7 @@ class LineSeparator extends StatelessWidget {
       opacity: .5,
       child: Row(
         children: List.generate(
-          110,
+          108,
           (index) => index.isEven
               ? Container(
                   height: 1,
