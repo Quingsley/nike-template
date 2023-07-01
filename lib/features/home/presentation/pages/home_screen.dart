@@ -53,14 +53,16 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: const Color(0XFFF7F7F9),
       appBar: AppBar(
         leadingWidth: 50,
-        //TODO: ADD AN ACTION
-        leading: Container(
-          margin: const EdgeInsets.only(left: 20),
-          height: 40,
-          child: SvgPicture.asset(
-            'assets/images/img_hamburger.svg',
+        leading: GestureDetector(
+          onTap: () => Scaffold.of(context).openDrawer(),
+          child: Container(
+            margin: const EdgeInsets.only(left: 20),
             height: 40,
-            // fit: BoxFit.contain,
+            child: SvgPicture.asset(
+              'assets/images/img_hamburger.svg',
+              height: 40,
+              // fit: BoxFit.contain,
+            ),
           ),
         ),
         title: Stack(

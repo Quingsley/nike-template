@@ -45,6 +45,7 @@ class _TabNavigationState extends ConsumerState<TabNavigation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const Drawer(),
       body: widget.navigationShell,
       floatingActionButton: FloatingActionButton(
         onPressed: () {},

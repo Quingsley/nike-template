@@ -87,9 +87,11 @@ class FavouriteShoeCard extends StatelessWidget {
                       ),
                     ),
                     const Spacer(),
-                    SvgPicture.asset(index! % 2 == 0
-                        ? 'assets/images/dot-red.svg'
-                        : 'assets/images/dot-indigo.svg'),
+                    SvgPicture.asset(
+                      index! % 2 == 0
+                          ? 'assets/images/dot-red.svg'
+                          : 'assets/images/dot-blue.svg',
+                    ),
                   ],
                 ),
               ],
