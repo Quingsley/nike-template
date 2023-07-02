@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nike_app/common/cmn_text.dart';
+import 'package:nike_app/common/widgets/app_bar_menu_icon.dart';
 import 'package:nike_app/features/home/data/models/shoe_category_model.dart';
 import 'package:nike_app/features/notifications/presentation/widgets/notification_tile.dart';
 
@@ -42,6 +43,7 @@ class NotificationsScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0XFFF7F7F9),
       appBar: AppBar(
+        leading: const AppBarMenuIcon(),
         title: ReusableText(
           text: 'Notifications',
           fSize: 16,

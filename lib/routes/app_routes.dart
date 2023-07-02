@@ -11,7 +11,9 @@ import 'package:nike_app/features/favourite/presentation/pages/favourite_screen.
 import 'package:nike_app/features/home/presentation/pages/home_screen.dart';
 import 'package:nike_app/features/map/presentation/pages/map_screen.dart';
 import 'package:nike_app/features/notifications/presentation/pages/notification_screen.dart';
+import 'package:nike_app/features/orders/presentation/pages/orders_Screen.dart';
 import 'package:nike_app/features/profile/presentation/pages/profile_Screen.dart';
+import 'package:nike_app/features/settings/presentation/pages/settings_screen.dart';
 import 'package:nike_app/features/shoe-details/presentation/pages/detail_screen.dart';
 import 'package:nike_app/features/onboarding/presentation/pages/on_boarding_screen.dart';
 import 'package:nike_app/features/tabs/presentation/pages/tab_navigation.dart';
@@ -114,16 +116,25 @@ class AppRoutes {
         builder: (context, state) => const CartScreen(),
       ),
       GoRoute(
-          path: CheckoutScreen.route,
-          builder: (context, state) => const CheckoutScreen(
-                mapPath: '/checkout/map',
-              ),
-          routes: [
-            GoRoute(
-              path: MapScreen.route,
-              builder: (context, state) => const MapScreen(),
-            ),
-          ]),
+        path: CheckoutScreen.route,
+        builder: (context, state) => const CheckoutScreen(
+          mapPath: '/checkout/map',
+        ),
+        routes: [
+          GoRoute(
+            path: MapScreen.route,
+            builder: (context, state) => const MapScreen(),
+          ),
+        ],
+      ),
+      GoRoute(
+        path: OrdersScreen.route,
+        builder: (context, state) => const OrdersScreen(),
+      ),
+      GoRoute(
+        path: SettingsScreen.route,
+        builder: (context, state) => const SettingsScreen(),
+      ),
     ],
   );
 }

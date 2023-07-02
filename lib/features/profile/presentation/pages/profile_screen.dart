@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:nike_app/common/cmn_text.dart';
 import 'package:nike_app/common/providers/image_service_provider.dart';
+import 'package:nike_app/common/providers/picked_image_provider.dart';
+import 'package:nike_app/common/widgets/app_bar_menu_icon.dart';
 import 'package:nike_app/features/profile/presentation/widgets/account_info_list_tile.dart';
 import 'package:nike_app/features/profile/presentation/widgets/phone_input_widget.dart';
-
-final pickedImage = StateProvider<XFile?>((ref) => null);
+import 'dart:io';
 
 class ProfileScreen extends ConsumerStatefulWidget {
   const ProfileScreen({super.key});
@@ -22,12 +22,13 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     var imageService = ref.watch(imageServiceProvider);
-    var selectedImage = ref.watch(pickedImage);
+    var selectedImage = ref.watch(pickedImageProvider);
     // print(selectedImage?.path);
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: const Color(0XFFF7F7F9),
       appBar: AppBar(
+        leading: const AppBarMenuIcon(),
         title: ReusableText(
           text: 'Profile',
           fSize: 16,
@@ -78,7 +79,19 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               onPressed: () async {
                 var file = await imageService.pickImage();
                 if (file != null) {
-                  ref.read(pickedImage.notifier).state = file;
+                  ref.read(pickedImageProvider.notifier).state =
+                      File(file.path);
+                } else {
+                  if (context.mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      backgroundColor: Theme.of(context).colorScheme.error,
+                      content: ReusableText(
+                        text: 'Unable to upload image, please try again later',
+                        fSize: 20,
+                        color: Theme.of(context).colorScheme.onError,
+                      ),
+                    ));
+                  }
                 }
               },
               child: ReusableText(

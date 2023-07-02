@@ -27,6 +27,7 @@ class FavouriteShoeCard extends StatelessWidget {
           color: Theme.of(context).colorScheme.inversePrimary,
           child: InkWell(
             splashColor: Theme.of(context).colorScheme.primary.withOpacity(.1),
+            splashFactory: NoSplash.splashFactory,
             highlightColor:
                 Theme.of(context).colorScheme.primary.withOpacity(.1),
             onTap: () => context.push(detailsPath!),
@@ -36,10 +37,8 @@ class FavouriteShoeCard extends StatelessWidget {
               children: [
                 IconButton(
                   onPressed: () {},
-                  icon: Icon(
-                    category.isFavourite
-                        ? Icons.favorite
-                        : Icons.favorite_outline,
+                  icon: SvgPicture.asset(
+                    'assets/images/img_volume.svg',
                     color: category.isFavourite
                         ? Colors.red
                         : Theme.of(context).colorScheme.secondary,

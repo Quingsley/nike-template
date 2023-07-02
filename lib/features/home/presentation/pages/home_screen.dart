@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:nike_app/common/widgets/app_bar_menu_icon.dart';
 import 'package:nike_app/features/home/data/models/categories_model.dart';
 import 'package:nike_app/features/home/data/models/shoe_category_model.dart';
 import 'package:nike_app/features/home/presentation/widgets/category_action_header.dart';
@@ -53,18 +54,7 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: const Color(0XFFF7F7F9),
       appBar: AppBar(
         leadingWidth: 50,
-        leading: GestureDetector(
-          onTap: () => Scaffold.of(context).openDrawer(),
-          child: Container(
-            margin: const EdgeInsets.only(left: 20),
-            height: 40,
-            child: SvgPicture.asset(
-              'assets/images/img_hamburger.svg',
-              height: 40,
-              // fit: BoxFit.contain,
-            ),
-          ),
-        ),
+        leading: const AppBarMenuIcon(),
         title: Stack(
           alignment: Alignment.bottomCenter,
           children: [

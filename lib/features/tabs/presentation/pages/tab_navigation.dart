@@ -1,12 +1,17 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nike_app/common/providers/drawer_controller_provider.dart';
 import 'package:nike_app/common/providers/location_service_provider.dart';
 import 'package:nike_app/features/tabs/presentation/providers/address_state_provider.dart';
 import 'package:nike_app/features/tabs/presentation/providers/tabs_provider.dart';
 import 'package:nike_app/features/tabs/presentation/widgets/bottom_bar_item.dart';
+import 'package:nike_app/features/tabs/presentation/widgets/drawer.dart';
 import 'package:nike_app/utils/utils.dart';
+import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 
 class TabNavigation extends ConsumerStatefulWidget {
   const TabNavigation({required this.navigationShell, Key? key})
@@ -19,6 +24,7 @@ class TabNavigation extends ConsumerStatefulWidget {
 }
 
 class _TabNavigationState extends ConsumerState<TabNavigation> {
+  Timer? rotationTimer;
   @override
   void initState() {
     super.initState();
@@ -44,76 +50,99 @@ class _TabNavigationState extends ConsumerState<TabNavigation> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: const Drawer(),
-      body: widget.navigationShell,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(100),
+    var advancedDrawerController = ref.watch(drawerControllerProvider);
+    return AdvancedDrawer(
+      openRatio: .5,
+      drawer: const TabsDrawer(),
+      backdrop: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.primary,
         ),
-        child: SvgPicture.asset('assets/images/img_cart.svg'),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomAppBar(
-        shape: const CircularNotchedRectangle(),
-        notchMargin: 10,
-        child: SizedBox(
-          height: 50,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  BottomBarItem(
-                    isSelected: widget.navigationShell.currentIndex ==
-                            TabScreens.home.index
-                        ? true
-                        : false,
-                    icon: Icons.home_outlined,
-                    onPress: () {
-                      _goBranch(TabScreens.home.index);
-                    },
-                  ),
-                  BottomBarItem(
-                    icon: Icons.favorite_outline_outlined,
-                    onPress: () {
-                      _goBranch(TabScreens.favourite.index);
-                    },
-                    isSelected: widget.navigationShell.currentIndex ==
-                            TabScreens.favourite.index
-                        ? true
-                        : false,
-                  ),
-                ],
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  BottomBarItem(
-                    icon: Icons.notifications_outlined,
-                    onPress: () {
-                      _goBranch(TabScreens.notification.index);
-                    },
-                    isSelected: widget.navigationShell.currentIndex ==
-                            TabScreens.notification.index
-                        ? true
-                        : false,
-                  ),
-                  BottomBarItem(
-                      icon: Icons.account_box_outlined,
+      controller: advancedDrawerController,
+      animationCurve: Curves.easeInOut,
+      animationDuration: const Duration(milliseconds: 300),
+      animateChildDecoration: true,
+      rtlOpening: false,
+      // openScale: 1.0,
+      disabledGestures: false,
+      childDecoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(25),
+      ),
+
+      child: Scaffold(
+        drawer: const TabsDrawer(),
+        body: widget.navigationShell,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          backgroundColor: Theme.of(context).colorScheme.primary,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(100),
+          ),
+          child: SvgPicture.asset('assets/images/img_cart.svg'),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: BottomAppBar(
+          shape: const CircularNotchedRectangle(),
+          notchMargin: 10,
+          child: SizedBox(
+            height: 50,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    BottomBarItem(
                       isSelected: widget.navigationShell.currentIndex ==
-                              TabScreens.profile.index
+                              TabScreens.home.index
                           ? true
                           : false,
+                      imagePath: 'assets/images/home-2.svg',
                       onPress: () {
-                        _goBranch(TabScreens.profile.index);
-                      }),
-                ],
-              ),
-            ],
+                        _goBranch(TabScreens.home.index);
+                      },
+                    ),
+                    BottomBarItem(
+                      imagePath: 'assets/images/heart.svg',
+                      onPress: () {
+                        _goBranch(TabScreens.favourite.index);
+                      },
+                      isSelected: widget.navigationShell.currentIndex ==
+                              TabScreens.favourite.index
+                          ? true
+                          : false,
+                    ),
+                  ],
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    BottomBarItem(
+                      imagePath: 'assets/images/notifcation_Icon.svg',
+                      onPress: () {
+                        _goBranch(TabScreens.notification.index);
+                      },
+                      isSelected: widget.navigationShell.currentIndex ==
+                              TabScreens.notification.index
+                          ? true
+                          : false,
+                    ),
+                    BottomBarItem(
+                        imagePath: 'assets/images/frame.svg',
+                        isSelected: widget.navigationShell.currentIndex ==
+                                TabScreens.profile.index
+                            ? true
+                            : false,
+                        onPress: () {
+                          _goBranch(TabScreens.profile.index);
+                        }),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

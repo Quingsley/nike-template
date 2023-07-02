@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:nike_app/common/widgets/app_bar_menu_icon.dart';
 import 'package:nike_app/features/favourite/presentation/widgets/fav_shoe_card.dart';
 import 'package:nike_app/features/home/data/models/shoe_category_model.dart';
 
@@ -50,6 +51,7 @@ class FavouriteScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0XFFF7F7F9),
       appBar: AppBar(
+        leading: const AppBarMenuIcon(),
         title: Text(
           'Favourite',
           style: GoogleFonts.raleway(

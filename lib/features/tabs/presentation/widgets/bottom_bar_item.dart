@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class BottomBarItem extends StatelessWidget {
   const BottomBarItem(
       {super.key,
       required this.isSelected,
-      required this.icon,
+      required this.imagePath,
       required this.onPress});
 
   final bool isSelected;
-  final IconData icon;
+  final String imagePath;
   final Function() onPress;
 
   @override
@@ -26,9 +27,8 @@ class BottomBarItem extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
-            icon,
-            size: 32,
+          SvgPicture.asset(
+            imagePath,
             color: isSelected
                 ? Theme.of(context).colorScheme.primary
                 : Theme.of(context).colorScheme.secondary,

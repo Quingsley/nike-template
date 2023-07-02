@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nike_app/features/home/data/models/shoe_category_model.dart';
@@ -28,6 +29,7 @@ class CategoryShoeCard extends StatelessWidget {
           color: Theme.of(context).colorScheme.inversePrimary,
           child: InkWell(
             splashColor: Theme.of(context).colorScheme.primary.withOpacity(.4),
+            splashFactory: NoSplash.splashFactory,
             highlightColor:
                 Theme.of(context).colorScheme.primary.withOpacity(.2),
             onTap: () => context.push(detailsPath!),
@@ -37,10 +39,12 @@ class CategoryShoeCard extends StatelessWidget {
               children: [
                 IconButton(
                   onPressed: () {},
-                  icon: Icon(
+                  iconSize: 30,
+                  icon: SvgPicture.asset(
                     category.isFavourite
-                        ? Icons.favorite
-                        : Icons.favorite_outline,
+                        ? 'assets/images/img_volume.svg'
+                        : 'assets/images/heart.svg',
+                    height: 16,
                     color: category.isFavourite
                         ? Colors.red
                         : Theme.of(context).colorScheme.secondary,
