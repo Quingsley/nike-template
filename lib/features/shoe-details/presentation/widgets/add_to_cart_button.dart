@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:nike_app/common/constants/app_styles.dart';
 import 'package:nike_app/features/cart/presentation/pages/cart_screen.dart';
 
 class AddToCartBtn extends StatelessWidget {
@@ -14,9 +15,8 @@ class AddToCartBtn extends StatelessWidget {
           context.go(CartScreen.route);
         },
         style: ButtonStyle(
-          backgroundColor: MaterialStatePropertyAll<Color>(
-            Theme.of(context).colorScheme.primary,
-          ),
+          backgroundColor:
+              const MaterialStatePropertyAll<Color>(AppStyles.blueLightShade),
           shape: MaterialStatePropertyAll(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),

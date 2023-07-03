@@ -4,7 +4,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:nike_app/common/cmn_text.dart';
+import 'package:nike_app/common/constants/app_styles.dart';
+import 'package:nike_app/common/widgets/cmn_text.dart';
 import 'package:nike_app/env/env.dart';
 import 'package:nike_app/features/checkout/presentation/providers/new_location_state_provider.dart';
 
@@ -37,9 +38,17 @@ class _MapContainerPreviewState extends ConsumerState<MapContainerPreview> {
           color: Theme.of(context).colorScheme.primary,
         ),
         image: DecorationImage(
-          fit: BoxFit.cover,
-          image: NetworkImage(url),
-        ),
+            fit: BoxFit.cover,
+            image: NetworkImage(url),
+            onError: (error, stackTrace) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content:
+                      ReusableText(text: 'Unable to Preview Map', fSize: 16),
+                  backgroundColor: AppStyles.errorColor,
+                ),
+              );
+            }),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -68,7 +77,7 @@ class _MapContainerPreviewState extends ConsumerState<MapContainerPreview> {
               width: 40,
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primary,
+                color: AppStyles.blueLightShade,
                 borderRadius: BorderRadius.circular(100),
               ),
               child: SvgPicture.asset('assets/images/img_locationicon.svg'),

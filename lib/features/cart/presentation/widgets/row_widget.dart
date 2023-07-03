@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:nike_app/common/constants/app_styles.dart';
 
 class RowWidget extends StatelessWidget {
   const RowWidget(
@@ -26,7 +27,7 @@ class RowWidget extends StatelessWidget {
           style: GoogleFonts.poppins(
             fontSize: 16,
             fontWeight: FontWeight.w500,
-            color: color ?? const Color(0XFF1A2530),
+            color: color ?? AppStyles.darkTextColor,
           ),
         )
       ],

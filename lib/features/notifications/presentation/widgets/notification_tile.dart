@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:nike_app/common/cmn_text.dart';
+import 'package:nike_app/common/constants/app_styles.dart';
+import 'package:nike_app/common/widgets/cmn_text.dart';
 import 'package:nike_app/features/home/data/models/shoe_category_model.dart';
 
 class NotificationTile extends StatelessWidget {
@@ -36,7 +37,7 @@ class NotificationTile extends StatelessWidget {
             height: 90,
             width: 90,
             decoration: BoxDecoration(
-              color: const Color(0XFFF7F7F9),
+              color: AppStyles.scaffoldBackgroundColor,
               borderRadius: BorderRadius.circular(8),
               image: DecorationImage(
                 image: AssetImage(shoeModel.imgPath),
@@ -52,7 +53,7 @@ class NotificationTile extends StatelessWidget {
                 text: message,
                 fSize: 14,
                 fFamily: GoogleFonts.raleway().fontFamily,
-                color: Theme.of(context).colorScheme.primary,
+                color: AppStyles.blueLightShade,
                 fWeight: FontWeight.w500,
               ),
               const SizedBox(
@@ -74,7 +75,7 @@ class NotificationTile extends StatelessWidget {
                   ReusableText(
                     text: '\$$newPrice',
                     fSize: 14,
-                    color: const Color(0xFF707B81),
+                    color: AppStyles.darkGreyTextColor,
                     fWeight: FontWeight.w500,
                   ),
                 ],
@@ -84,7 +85,7 @@ class NotificationTile extends StatelessWidget {
           ReusableText(
             text: '${DateFormat.m().format(duration)} min ago',
             fSize: 14,
-            color: const Color(0xFF707B81),
+            color: AppStyles.darkGreyTextColor,
             fWeight: FontWeight.w500,
             textAlign: TextAlign.right,
           ),

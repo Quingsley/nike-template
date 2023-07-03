@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:nike_app/common/cmn_text.dart';
+import 'package:nike_app/common/widgets/cmn_text.dart';
 import 'package:nike_app/features/home/presentation/pages/home_screen.dart';
 
 class ErrorPage extends StatelessWidget {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:nike_app/common/constants/app_styles.dart';
 
 class BottomBarItem extends StatelessWidget {
   const BottomBarItem(
@@ -30,7 +31,7 @@ class BottomBarItem extends StatelessWidget {
           SvgPicture.asset(
             imagePath,
             color: isSelected
-                ? Theme.of(context).colorScheme.primary
+                ? AppStyles.blueLightShade
                 : Theme.of(context).colorScheme.secondary,
           ),
         ],

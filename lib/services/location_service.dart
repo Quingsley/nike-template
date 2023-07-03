@@ -42,8 +42,12 @@ class LocationService {
       }
       final response = jsonDecode(reqeust.body);
       return response['results'][0]['formatted_address'];
+    } on Exception catch (_) {
+      // print({'Exception': e});
+      throw 'Unable to get address';
     } catch (error) {
-      return error.toString();
+      // print({'ERORR': error});
+      rethrow;
     }
   }
 }

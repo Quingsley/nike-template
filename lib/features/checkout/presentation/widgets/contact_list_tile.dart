@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:nike_app/common/cmn_text.dart';
+import 'package:nike_app/common/constants/app_styles.dart';
+import 'package:nike_app/common/widgets/cmn_text.dart';
 
 class ContactListTile extends StatelessWidget {
   const ContactListTile({
@@ -23,7 +24,7 @@ class ContactListTile extends StatelessWidget {
         height: 40,
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: const Color(0xFFF8F9FA),
+          color: AppStyles.scaffoldBackgroundColor,
           borderRadius: BorderRadius.circular(12),
         ),
         child: SvgPicture.asset(leadingImgPath),
@@ -32,7 +33,7 @@ class ContactListTile extends StatelessWidget {
         text: title,
         fSize: 14,
         fWeight: FontWeight.w500,
-        color: const Color(0XFF1A2530),
+        color: AppStyles.darkTextColor,
       ),
       subtitle: ReusableText(
         text: subtTitle,

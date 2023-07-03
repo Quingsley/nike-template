@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nike_app/common/constants/app_styles.dart';
 import 'package:nike_app/features/shoe-details/presentation/widgets/add_to_cart_button.dart';
 import 'package:nike_app/features/shoe-details/presentation/widgets/shoe_showcase.dart';
 import 'package:readmore/readmore.dart';
@@ -27,7 +28,7 @@ class _ShoeDetailState extends State<ShoeDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0XFFF7F7F9),
+      backgroundColor: AppStyles.scaffoldBackgroundColor,
       appBar: AppBar(
         elevation: 0,
         leadingWidth: 60,

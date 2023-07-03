@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:nike_app/common/constants/app_styles.dart';
 
 class SubTitle extends StatelessWidget {
   const SubTitle({
@@ -15,7 +16,7 @@ class SubTitle extends StatelessWidget {
     return Text(
       text,
       style: GoogleFonts.poppins(
-        color: Colors.black38,
+        color: AppStyles.darkGreyTextColor,
         fontSize: fSize ?? 16,
       ),
     );

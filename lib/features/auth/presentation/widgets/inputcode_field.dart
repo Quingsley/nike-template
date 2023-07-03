@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nike_app/common/constants/app_styles.dart';
 
 class InputCodeField extends StatelessWidget {
   const InputCodeField({
@@ -13,9 +14,7 @@ class InputCodeField extends StatelessWidget {
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
           filled: true,
-          fillColor: const Color(
-            0xFF707B81,
-          ).withOpacity(0.1),
+          fillColor: AppStyles.darkGreyTextColor.withOpacity(0.1),
           border: const OutlineInputBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(12),

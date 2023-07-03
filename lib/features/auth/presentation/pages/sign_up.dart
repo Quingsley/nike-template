@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nike_app/common/constants/app_styles.dart';
 import 'package:nike_app/features/auth/presentation/pages/sign_in.dart';
 import 'package:nike_app/features/shoe-details/presentation/pages/detail_screen.dart';
 import '../../../../common/widgets/back_button.dart';
 import '../widgets/subtitle.dart';
 import '../widgets/title.dart';
 
-import '../widgets/custom_button.dart';
+import '../../../../common/widgets/custom_button.dart';
 import '../widgets/google_button.dart';
 import '../widgets/input_field.dart';
 
@@ -26,6 +27,7 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppStyles.scaffoldBackgroundColor,
       resizeToAvoidBottomInset: false,
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 15),

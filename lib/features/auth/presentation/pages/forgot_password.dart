@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nike_app/common/constants/app_styles.dart';
 import 'package:nike_app/features/auth/presentation/pages/otp_verification.dart';
 import 'package:nike_app/features/auth/presentation/pages/sign_in.dart';
 import '../../../../common/widgets/back_button.dart';
 import '../widgets/alert.dart';
-import '../widgets/custom_button.dart';
+import '../../../../common/widgets/custom_button.dart';
 import '../widgets/input_field.dart';
 import '../widgets/subtitle.dart';
 import '../widgets/title.dart';
@@ -23,6 +24,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppStyles.scaffoldBackgroundColor,
       resizeToAvoidBottomInset: false,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 50),
@@ -37,7 +39,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             ),
             const KTitle(text: 'Forgot Password'),
             const SubTitle(
-                text: 'Enter your Emaail Account To Reset Your Password'),
+                text: 'Enter your Email Account To Reset Your Password'),
             InputField(
               fieldTitle: 'Email Address',
               placeHolderText: 'xyz@gmail.com',

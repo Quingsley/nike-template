@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nike_app/common/cmn_text.dart';
+import 'package:nike_app/common/widgets/cmn_text.dart';
 
 class RowCheckoutWidget extends StatelessWidget {
   const RowCheckoutWidget({

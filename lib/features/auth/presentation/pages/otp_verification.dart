@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nike_app/common/constants/app_styles.dart';
 import 'package:nike_app/features/auth/presentation/pages/sign_in.dart';
 import '../../../../common/widgets/back_button.dart';
-import '../widgets/custom_button.dart';
+import '../../../../common/widgets/custom_button.dart';
 import '../widgets/text_button.dart';
 import '../widgets/timer_countdown.dart';
 import '../widgets/title.dart';
@@ -17,7 +18,7 @@ class OTPPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppStyles.scaffoldBackgroundColor,
       body: Padding(
           padding: const EdgeInsets.symmetric(
             vertical: 50,

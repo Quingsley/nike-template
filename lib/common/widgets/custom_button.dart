@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nike_app/common/constants/app_styles.dart';
 
 class CButton extends StatelessWidget {
   const CButton(
@@ -21,7 +22,7 @@ class CButton extends StatelessWidget {
         foregroundColor: Colors.white,
         padding:
             EdgeInsets.symmetric(horizontal: hPadding ?? 120, vertical: 15),
-        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+        backgroundColor: AppStyles.blueLightShade,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
         ),
@@ -31,7 +32,10 @@ class CButton extends StatelessWidget {
         softWrap: false,
         overflow: TextOverflow.visible,
         textAlign: TextAlign.center,
-        style: TextStyle(fontSize: fSize ?? 16, fontWeight: FontWeight.w700),
+        style: TextStyle(
+          fontSize: fSize ?? 16,
+          fontWeight: FontWeight.w700,
+        ),
       ),
     );
   }

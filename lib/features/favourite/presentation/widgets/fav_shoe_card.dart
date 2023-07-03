@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:nike_app/common/constants/app_styles.dart';
 import 'package:nike_app/features/home/data/models/shoe_category_model.dart';
 
 class FavouriteShoeCard extends StatelessWidget {
@@ -40,7 +41,7 @@ class FavouriteShoeCard extends StatelessWidget {
                   icon: SvgPicture.asset(
                     'assets/images/img_volume.svg',
                     color: category.isFavourite
-                        ? Colors.red
+                        ? AppStyles.favouriteColor
                         : Theme.of(context).colorScheme.secondary,
                   ),
                 ),
@@ -54,7 +55,7 @@ class FavouriteShoeCard extends StatelessWidget {
                     style: GoogleFonts.poppins(
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
-                      color: Theme.of(context).colorScheme.primary,
+                      color: AppStyles.blueLightShade,
                     ),
                   ),
                 ),

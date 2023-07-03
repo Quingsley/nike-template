@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:nike_app/common/cmn_text.dart';
+import 'package:nike_app/common/constants/app_styles.dart';
+import 'package:nike_app/common/widgets/cmn_text.dart';
 import 'package:nike_app/common/providers/location_service_provider.dart';
 import 'package:nike_app/common/widgets/back_button.dart';
 import 'package:go_router/go_router.dart';
-import 'package:nike_app/features/auth/presentation/widgets/custom_button.dart';
+import 'package:nike_app/common/widgets/custom_button.dart';
 import 'package:nike_app/features/cart/presentation/widgets/line_separator.dart';
 import 'package:nike_app/features/cart/presentation/widgets/row_widget.dart';
 import 'package:nike_app/features/checkout/presentation/providers/new_location_state_provider.dart';
@@ -43,7 +44,7 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
             address.address.longitude!.toInt(),
         locationService: location));
     return Scaffold(
-      backgroundColor: const Color(0XFFF7F7F9),
+      backgroundColor: AppStyles.scaffoldBackgroundColor,
       appBar: AppBar(
         leadingWidth: 60,
         leading: KBackButton(
@@ -85,7 +86,7 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
               text: 'Contact information',
               textAlign: TextAlign.left,
               fWeight: FontWeight.w500,
-              color: const Color(0XFF1A2530),
+              color: AppStyles.darkTextColor,
               fFamily: GoogleFonts.raleway().fontFamily,
               fStyle: FontStyle.normal,
             ),
@@ -104,7 +105,7 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
               text: 'Address',
               textAlign: TextAlign.left,
               fWeight: FontWeight.w500,
-              color: const Color(0XFF1A2530),
+              color: AppStyles.darkTextColor,
               fFamily: GoogleFonts.raleway().fontFamily,
               fStyle: FontStyle.normal,
             ),
@@ -122,9 +123,9 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
                 );
               },
               error: ((error, stackTrace) => Text(
-                    error.toString(),
+                    'Unable to get address',
                     style: TextStyle(
-                      overflow: TextOverflow.fade,
+                      overflow: TextOverflow.ellipsis,
                       color: Theme.of(context).colorScheme.error,
                     ),
                   )),
@@ -147,7 +148,7 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
               text: 'Payments',
               textAlign: TextAlign.left,
               fWeight: FontWeight.w500,
-              color: const Color(0XFF1A2530),
+              color: AppStyles.darkTextColor,
               fFamily: GoogleFonts.raleway().fontFamily,
               fStyle: FontStyle.normal,
             ),
@@ -168,10 +169,10 @@ class _CheckoutScreenState extends ConsumerState<CheckoutScreen> {
             const RowWidget(leftText: 'Delivery', rightText: '\$60.29'),
             const LineSeparator(),
             const SizedBox(height: 20),
-            RowWidget(
+            const RowWidget(
               leftText: 'Total Cost',
               rightText: '\$203.49',
-              color: Theme.of(context).colorScheme.primary,
+              color: AppStyles.blueLightShade,
             )
           ],
         ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:nike_app/common/cmn_text.dart';
+import 'package:nike_app/common/widgets/cmn_text.dart';
 
 class DrawerItem extends StatelessWidget {
   const DrawerItem(

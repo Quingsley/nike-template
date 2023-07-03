@@ -10,9 +10,9 @@ class NikeButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPress,
       style: ElevatedButton.styleFrom(
-        foregroundColor: const Color(0XFF2B2B2B),
+        foregroundColor: Theme.of(context).colorScheme.secondary,
         padding: EdgeInsets.symmetric(
-          horizontal: MediaQuery.of(context).size.width * .3,
+          horizontal: MediaQuery.sizeOf(context).width * .3,
           vertical: 20,
         ),
         shape: RoundedRectangleBorder(

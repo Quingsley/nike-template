@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'subtitle.dart';
 import 'title.dart';
 
@@ -7,10 +8,18 @@ Future<void> openAlert(BuildContext context) {
       context: context,
       builder: (context) => AlertDialog(
             backgroundColor: Colors.white,
-            icon: Icon(
-              Icons.mark_email_unread_sharp,
-              color: Theme.of(context).colorScheme.primary,
-              size: 32,
+            icon: Container(
+              width: 32, //! FIX
+              constraints: const BoxConstraints(
+                minWidth: 32,
+              ),
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.primary,
+                borderRadius: BorderRadius.circular(200),
+              ),
+              child: SvgPicture.asset(
+                'assets/images/img_mail.svg',
+              ),
             ),
             title: const KTitle(
               text: 'Check Your Email',

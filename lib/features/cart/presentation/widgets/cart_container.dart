@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:nike_app/common/constants/app_styles.dart';
 import 'package:nike_app/features/home/data/models/shoe_category_model.dart';
 
 class CartCardContainer extends StatelessWidget {
@@ -68,17 +70,18 @@ class CartCardContainer extends StatelessWidget {
       secondaryBackground: Container(
         margin: const EdgeInsets.only(right: 16),
         decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.errorContainer,
+            color: AppStyles.errorColor,
             borderRadius: BorderRadius.circular(8)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             IconButton(
               onPressed: () {},
-              icon: Icon(
-                Icons.delete,
-                size: 48,
-                color: Theme.of(context).colorScheme.onErrorContainer,
+              icon: SvgPicture.asset(
+                'assets/images/img_trash2.svg',
+                width: 48,
+                height: 48,
+                color: Colors.white,
               ),
             ),
           ],
@@ -119,7 +122,7 @@ class CartCardContainer extends StatelessWidget {
                   style: GoogleFonts.raleway(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
-                    color: const Color(0XFF1A2530),
+                    color: AppStyles.darkTextColor,
                   ),
                 ),
                 const SizedBox(
@@ -130,7 +133,7 @@ class CartCardContainer extends StatelessWidget {
                     style: GoogleFonts.poppins(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
-                      color: const Color(0XFF1A2530),
+                      color: AppStyles.darkTextColor,
                     )),
               ],
             ),

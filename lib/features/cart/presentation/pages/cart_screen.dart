@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:nike_app/common/constants/app_styles.dart';
 import 'package:nike_app/common/widgets/back_button.dart';
-import 'package:nike_app/features/auth/presentation/widgets/custom_button.dart';
+import 'package:nike_app/common/widgets/custom_button.dart';
 import 'package:nike_app/features/cart/data/models/cart_model.dart';
 import 'package:nike_app/features/cart/presentation/widgets/cart_container.dart';
 import 'package:nike_app/features/cart/presentation/widgets/line_separator.dart';
@@ -47,7 +48,7 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0XFFF7F7F9),
+      backgroundColor: AppStyles.scaffoldBackgroundColor,
       appBar: AppBar(
         leadingWidth: 60,
         leading: KBackButton(

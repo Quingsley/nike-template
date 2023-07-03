@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nike_app/common/constants/app_styles.dart';
 
 class LineSeparator extends StatelessWidget {
   const LineSeparator({super.key});
@@ -16,7 +17,7 @@ class LineSeparator extends StatelessWidget {
                   width: 3,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
-                    color: const Color(0xFF707B81),
+                    color: AppStyles.darkGreyTextColor,
                   ),
                 )
               : Container(

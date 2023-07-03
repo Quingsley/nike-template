@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:nike_app/common/cmn_text.dart';
+import 'package:nike_app/common/widgets/cmn_text.dart';
 import 'package:nike_app/common/providers/image_service_provider.dart';
 import 'package:nike_app/common/providers/picked_image_provider.dart';
 import 'package:nike_app/common/widgets/app_bar_menu_icon.dart';

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nike_app/common/constants/app_styles.dart';
 import 'package:nike_app/features/auth/presentation/pages/forgot_password.dart';
 import 'package:nike_app/features/auth/presentation/pages/sign_up.dart';
 import 'package:nike_app/features/home/presentation/pages/home_screen.dart';
 import '../../../../common/widgets/back_button.dart';
-import '../widgets/custom_button.dart';
+import '../../../../common/widgets/custom_button.dart';
 import '../widgets/google_button.dart';
 import '../widgets/input_field.dart';
 import '../widgets/subtitle.dart';
@@ -26,7 +27,7 @@ class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppStyles.scaffoldBackgroundColor,
       resizeToAvoidBottomInset: false,
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 15),

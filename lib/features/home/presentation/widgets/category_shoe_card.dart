@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:nike_app/common/constants/app_styles.dart';
 import 'package:nike_app/features/home/data/models/shoe_category_model.dart';
 
 class CategoryShoeCard extends StatelessWidget {
@@ -60,7 +61,7 @@ class CategoryShoeCard extends StatelessWidget {
                     style: GoogleFonts.poppins(
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
-                      color: Theme.of(context).colorScheme.primary,
+                      color: AppStyles.blueLightShade,
                     ),
                   ),
                 ),
@@ -100,9 +101,9 @@ class CategoryShoeCard extends StatelessWidget {
                     child: Container(
                       width: 30,
                       height: 30,
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.primary,
-                        borderRadius: const BorderRadius.only(
+                      decoration: const BoxDecoration(
+                        color: AppStyles.blueLightShade,
+                        borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(12),
                           bottomRight: Radius.circular(12),
                         ),

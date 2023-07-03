@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:nike_app/common/constants/app_styles.dart';
 import 'package:nike_app/common/widgets/app_bar_menu_icon.dart';
 import 'package:nike_app/features/home/data/models/categories_model.dart';
 import 'package:nike_app/features/home/data/models/shoe_category_model.dart';
@@ -51,7 +52,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0XFFF7F7F9),
+      backgroundColor: AppStyles.scaffoldBackgroundColor,
       appBar: AppBar(
         leadingWidth: 50,
         leading: const AppBarMenuIcon(),
@@ -133,7 +134,7 @@ class HomeScreen extends StatelessWidget {
                   height: 50,
                   padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                    color: const Color(0XFF0D6EFD),
+                    color: AppStyles.blueLightShade,
                     borderRadius: BorderRadius.circular(100),
                   ),
                   child: SvgPicture.asset('assets/images/img_sliders.svg'),

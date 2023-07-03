@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:nike_app/common/constants/app_styles.dart';
 import 'package:nike_app/features/home/data/models/categories_model.dart';
 
 class CategoryCard extends StatelessWidget {
@@ -13,7 +14,7 @@ class CategoryCard extends StatelessWidget {
       width: 100,
       decoration: BoxDecoration(
         color: category.isSelected
-            ? Theme.of(context).colorScheme.primary
+            ? AppStyles.blueLightShade
             : Theme.of(context).colorScheme.inversePrimary,
         borderRadius: BorderRadius.circular(8),
       ),
