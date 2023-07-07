@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nike_app/common/widgets/cmn_text.dart';
 import 'package:nike_app/common/providers/picked_image_provider.dart';
+import 'package:nike_app/features/auth/presentation/pages/sign_in.dart';
 import 'package:nike_app/features/cart/presentation/pages/cart_screen.dart';
 import 'package:nike_app/features/favourite/presentation/pages/favourite_screen.dart';
 import 'package:nike_app/features/notifications/presentation/pages/notification_screen.dart';
@@ -49,7 +50,7 @@ class TabsDrawer extends ConsumerWidget {
               color: Colors.white,
             ),
             const SizedBox(
-              height: 40,
+              height: 30,
             ),
             DrawerItem(
                 title: 'Profile',
@@ -86,6 +87,18 @@ class TabsDrawer extends ConsumerWidget {
                 imagePath: 'assets/images/img_settings.svg',
                 onTap: () {
                   context.go(SettingsScreen.route);
+                }),
+            const Divider(
+              color: Color(0XFFF7F7F9),
+              height: 1,
+              thickness: 2,
+              indent: 10,
+            ),
+            DrawerItem(
+                title: 'Log Out',
+                imagePath: 'assets/images/signout.svg',
+                onTap: () {
+                  context.go(SignIn.route);
                 }),
             const Spacer(),
             DefaultTextStyle(

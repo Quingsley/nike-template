@@ -58,8 +58,8 @@ class _TabNavigationState extends ConsumerState<TabNavigation> {
       backdrop: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.primary,
+        decoration: const BoxDecoration(
+          color: AppStyles.blueLightShade,
         ),
       ),
       controller: advancedDrawerController,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
 import 'package:nike_app/features/auth/presentation/pages/forgot_password.dart';
 import 'package:nike_app/features/auth/presentation/pages/otp_verification.dart';
 import 'package:nike_app/features/auth/presentation/pages/sign_in.dart';
@@ -17,6 +19,8 @@ import 'package:nike_app/features/settings/presentation/pages/settings_screen.da
 import 'package:nike_app/features/shoe-details/presentation/pages/detail_screen.dart';
 import 'package:nike_app/features/onboarding/presentation/pages/on_boarding_screen.dart';
 import 'package:nike_app/features/tabs/presentation/pages/tab_navigation.dart';
+
+part 'app_routes.g.dart';
 
 class AppRoutes {
   static final GlobalKey<NavigatorState> _rootNavigator = GlobalKey();
@@ -137,4 +141,9 @@ class AppRoutes {
       ),
     ],
   );
+}
+
+@riverpod
+GoRouter goRouter(GoRouterRef ref) {
+  return AppRoutes.router;
 }

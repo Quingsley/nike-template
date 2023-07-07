@@ -10,15 +10,16 @@ void main() async {
   runApp(const ProviderScope(child: NikeStoreApp()));
 }
 
-class NikeStoreApp extends StatelessWidget {
+class NikeStoreApp extends ConsumerWidget {
   const NikeStoreApp({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     const nikeTheme = NikeTheme();
+    var router = ref.watch(goRouterProvider);
     return MaterialApp.router(
       theme: nikeTheme.toThemeData(),
-      routerConfig: AppRoutes.router,
+      routerConfig: router,
       debugShowCheckedModeBanner: false,
     );
   }
