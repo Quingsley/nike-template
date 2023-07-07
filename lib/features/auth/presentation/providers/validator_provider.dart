@@ -27,6 +27,6 @@ MultiValidator emailValidator(EmailValidatorRef ref) {
 MultiValidator userNameValidator(UserNameValidatorRef ref) {
   return MultiValidator([
     RequiredValidator(errorText: 'Username is required'),
-    MinLengthValidator(8, errorText: 'username must be at least 3 digits long')
+    MinLengthValidator(3, errorText: 'username must be at least 3 digits long')
   ]);
 }

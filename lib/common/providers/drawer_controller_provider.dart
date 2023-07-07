@@ -3,7 +3,7 @@ import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 
 part 'drawer_controller_provider.g.dart';
 
-@Riverpod(keepAlive: true)
+@Riverpod(keepAlive: false)
 AdvancedDrawerController drawerController(DrawerControllerRef ref) {
   return AdvancedDrawerController();
 }

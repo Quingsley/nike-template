@@ -36,7 +36,7 @@ final emailValidatorProvider = AutoDisposeProvider<MultiValidator>.internal(
 );
 
 typedef EmailValidatorRef = AutoDisposeProviderRef<MultiValidator>;
-String _$userNameValidatorHash() => r'150414f810f2de3c2d18edbdcc00563aa9fb6b4b';
+String _$userNameValidatorHash() => r'd3855cd10f06aa73b47eb822a2036cfcb11d94c7';
 
 /// See also [userNameValidator].
 @ProviderFor(userNameValidator)

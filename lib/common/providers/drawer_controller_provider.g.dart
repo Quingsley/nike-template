@@ -6,11 +6,12 @@ part of 'drawer_controller_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$drawerControllerHash() => r'0037b11bd42a8ba445de7207ff8595b450bb85e2';
+String _$drawerControllerHash() => r'04282923625fad0577d4c8eedefa1d13dc0d02b6';
 
 /// See also [drawerController].
 @ProviderFor(drawerController)
-final drawerControllerProvider = Provider<AdvancedDrawerController>.internal(
+final drawerControllerProvider =
+    AutoDisposeProvider<AdvancedDrawerController>.internal(
   drawerController,
   name: r'drawerControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -20,5 +21,5 @@ final drawerControllerProvider = Provider<AdvancedDrawerController>.internal(
   allTransitiveDependencies: null,
 );
 
-typedef DrawerControllerRef = ProviderRef<AdvancedDrawerController>;
+typedef DrawerControllerRef = AutoDisposeProviderRef<AdvancedDrawerController>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

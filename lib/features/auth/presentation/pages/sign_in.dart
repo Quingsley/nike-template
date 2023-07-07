@@ -3,12 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nike_app/common/constants/app_styles.dart';
 import 'package:nike_app/common/widgets/back_button.dart';
+import 'package:nike_app/common/widgets/cmn_text.dart';
 import 'package:nike_app/common/widgets/custom_button.dart';
 import 'package:nike_app/features/auth/data/models/app_user.dart';
 import 'package:nike_app/features/auth/presentation/pages/forgot_password.dart';
 import 'package:nike_app/features/auth/presentation/pages/sign_up.dart';
+import 'package:nike_app/features/auth/presentation/providers/auth_providers.dart';
 import 'package:nike_app/features/auth/presentation/providers/validator_provider.dart';
-import 'package:nike_app/features/auth/presentation/viewmodels/auth_viewmodel.dart';
 import 'package:nike_app/features/auth/presentation/widgets/google_button.dart';
 import 'package:nike_app/features/auth/presentation/widgets/input_field.dart';
 import 'package:nike_app/features/auth/presentation/widgets/subtitle.dart';
@@ -28,14 +29,30 @@ class _SignInState extends ConsumerState<SignIn> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  void onSubmitForm() {
+
+  Future<void> onSubmitForm() async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-
-      ref.read(authViewModelProvider.notifier).signIn(
-          AppUser(userId: '1', email: emailController.text, name: 'Jerome'));
-      emailController.clear();
-      passwordController.clear();
+      try {
+        ref.read(isLoadingStateProvider.notifier).state = true;
+        await ref.read(authViewModelProvider).signIn(
+            AppUser(userId: '1', email: emailController.text, name: 'Jerome'));
+        ref.read(isLoadingStateProvider.notifier).state = false;
+        emailController.clear();
+        passwordController.clear();
+      } catch (e) {
+        ref.read(isLoadingStateProvider.notifier).state = false;
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: Theme.of(context).colorScheme.error,
+            content: ReusableText(
+              text: 'Something went wrong, try again',
+              fSize: 16,
+              color: Theme.of(context).colorScheme.onError,
+            ),
+          ),
+        );
+      }
     }
   }
 
@@ -43,8 +60,7 @@ class _SignInState extends ConsumerState<SignIn> {
   Widget build(BuildContext context) {
     var emailValidator = ref.watch(emailValidatorProvider);
     var passwordValidator = ref.watch(passwordValidatorProvider);
-    var authVMAsync = ref.watch(authViewModelProvider);
-
+    var isLoading = ref.watch(isLoadingStateProvider);
     return Scaffold(
       backgroundColor: AppStyles.scaffoldBackgroundColor,
       appBar: AppBar(
@@ -104,10 +120,10 @@ class _SignInState extends ConsumerState<SignIn> {
                           ),
                         ],
                       ),
-                      authVMAsync.isLoading
+                      isLoading
                           ? const CircularProgressIndicator()
                           : CButton(
-                              text: 'Sign in',
+                              text: 'Sign In',
                               hPadding: 135,
                               onpressed: () {
                                 onSubmitForm();

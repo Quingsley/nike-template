@@ -25,7 +25,6 @@ class MockAuthRepository implements IAuthRepository {
   @override
   Future<void> signInwithEmailAndPassword(AppUser user) async {
     if (user.email == 'jeromejuma25@gmail.com') {
-      print(user);
       ref.read(goRouterProvider).go(HomeScreen.route);
     } else {
       throw Exception('Invalid user');
@@ -33,8 +32,11 @@ class MockAuthRepository implements IAuthRepository {
   }
 
   @override
-  Future<bool> signUpWithEmailAndPassword(AppUser user) {
-    // TODO: implement signUpWithEmailAndPassword
-    throw UnimplementedError();
+  Future<void> signUpWithEmailAndPassword(AppUser user) async {
+    if (user.email == 'jeromejuma25@gmail.com') {
+      ref.read(goRouterProvider).go(HomeScreen.route);
+    } else {
+      throw Exception('Invalid user');
+    }
   }
 }

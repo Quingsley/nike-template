@@ -3,8 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nike_app/common/constants/app_styles.dart';
 import 'package:nike_app/common/widgets/back_button.dart';
+import 'package:nike_app/common/widgets/cmn_text.dart';
 import 'package:nike_app/common/widgets/custom_button.dart';
+import 'package:nike_app/features/auth/data/models/app_user.dart';
 import 'package:nike_app/features/auth/presentation/pages/sign_in.dart';
+import 'package:nike_app/features/auth/presentation/providers/auth_providers.dart';
 import 'package:nike_app/features/auth/presentation/providers/validator_provider.dart';
 import 'package:nike_app/features/auth/presentation/widgets/google_button.dart';
 import 'package:nike_app/features/auth/presentation/widgets/input_field.dart';
@@ -26,9 +29,31 @@ class _SignUpState extends ConsumerState<SignUp> {
   final nameController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
-  void onSubmitForm() {
+  Future<void> onSubmitForm() async {
     if (_formKey.currentState!.validate()) {
-      print('Valid');
+      _formKey.currentState!.save();
+      try {
+        ref.read(isLoadingStateProvider.notifier).state = true;
+        await ref.read(authViewModelProvider).signUp(AppUser(
+            userId: '1',
+            email: emailController.text,
+            name: nameController.text));
+        ref.read(isLoadingStateProvider.notifier).state = false;
+        emailController.clear();
+        passwordController.clear();
+      } catch (e) {
+        ref.read(isLoadingStateProvider.notifier).state = false;
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: Theme.of(context).colorScheme.error,
+            content: ReusableText(
+              text: 'Something went wrong, try again',
+              fSize: 16,
+              color: Theme.of(context).colorScheme.onError,
+            ),
+          ),
+        );
+      }
     }
   }
 
@@ -37,6 +62,7 @@ class _SignUpState extends ConsumerState<SignUp> {
     var passwordValidator = ref.watch(passwordValidatorProvider);
     var emailValidator = ref.watch(emailValidatorProvider);
     var userNameValidator = ref.watch(userNameValidatorProvider);
+    var isLoading = ref.watch(isLoadingStateProvider);
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -82,13 +108,15 @@ class _SignUpState extends ConsumerState<SignUp> {
                         isObscured: true,
                         validator: passwordValidator,
                       ),
-                      CButton(
-                        text: 'Sign Up',
-                        hPadding: 135,
-                        onpressed: () {
-                          onSubmitForm();
-                        },
-                      ),
+                      isLoading
+                          ? const CircularProgressIndicator()
+                          : CButton(
+                              text: 'Sign Up',
+                              hPadding: 135,
+                              onpressed: () {
+                                onSubmitForm();
+                              },
+                            ),
                       const SizedBox(
                         height: 20,
                       ),
