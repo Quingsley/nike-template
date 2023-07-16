@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:nike_app/features/auth/data/models/app_user.dart';
 import 'package:nike_app/features/auth/data/repositories/mock_auth_repository.dart';
 
@@ -16,5 +17,9 @@ class AuthViewModel {
     return Future.delayed(const Duration(seconds: 1), () async {
       await repository.signInwithEmailAndPassword(user);
     });
+  }
+
+  Future<UserCredential> signInWithGoogle() {
+    return repository.signInWithGoogle();
   }
 }

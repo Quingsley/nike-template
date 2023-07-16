@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -61,6 +62,7 @@ class _SignInState extends ConsumerState<SignIn> {
     var emailValidator = ref.watch(emailValidatorProvider);
     var passwordValidator = ref.watch(passwordValidatorProvider);
     var isLoading = ref.watch(isLoadingStateProvider);
+    var authVM = ref.watch(authViewModelProvider);
     return Scaffold(
       backgroundColor: AppStyles.scaffoldBackgroundColor,
       appBar: AppBar(
@@ -134,7 +136,15 @@ class _SignInState extends ConsumerState<SignIn> {
                       ),
                       GButton(
                         text: 'Sign In With Google',
-                        onpress: () {},
+                        onpress: () async {
+                          try {
+                            UserCredential data =
+                                await authVM.signInWithGoogle();
+                            print(data);
+                          } catch (e) {
+                            print(e);
+                          }
+                        },
                       ),
                       const Spacer(),
                       Row(

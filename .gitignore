@@ -46,4 +46,4 @@ app.*.map.json
 # environment variables
 .env
 /lib/env/env.g.dart
-riverpod.txt
+/lib/firebase_options.dart
